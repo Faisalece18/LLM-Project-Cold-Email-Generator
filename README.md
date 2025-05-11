@@ -8,8 +8,8 @@ Additionally, the Cold Email Generator supports customization and adaptability, 
 
 ## 📸 Screenshot
 
-![Screenshot 1](images/img1.png)
-![Screenshot 2](images/img2.png)
+![Screenshot 1](Images/img1.png)
+![Screenshot 2](Images/img2.png)
 
 ## 🚀 Features
 - Extracts job details from the provided text or URL.
