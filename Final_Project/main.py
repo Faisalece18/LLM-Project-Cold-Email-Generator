@@ -18,7 +18,19 @@ def create_streamlit_app(llm, portfolio, clean_text):
         Simply paste a job URL and receive a well-crafted email based on your portfolio.
         """)
         st.markdown("---")
-        st.markdown("🔗 **Powered by:** LLM + Your Portfolio")
+        st.markdown("🔗 **Powered by:** LLM")
+        github_username = "Faisalece18"
+        st.markdown("👤 **Developer**")
+        st.markdown(f"""
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+                <a href="https://github.com/{github_username}" target="_blank" style="text-decoration: none; color: inherit;">
+                  <img src="https://github.com/{github_username}.png" width="40" 
+                  style="border-radius: 50%; margin-right: 10px; border: 1px solid #ccc;">
+                  <span style="font-size: 16px; font-weight: 500;">{github_username}</span>
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
+
 
     # Title and description
     st.title("📧 Cold Mail Generator")
@@ -29,8 +41,8 @@ def create_streamlit_app(llm, portfolio, clean_text):
         st.subheader("🔗 Enter Job Posting URL")
         url_input = st.text_input(
             label="Job URL",
-            placeholder="e.g. https://jobs.nike.com/job/R-33460",
-            help="Paste the job posting URL from LinkedIn, Nike Careers, etc."
+            placeholder="e.g. https://jobs.bdjobs.com/jobdetails.asp?id=1366243&fcatId=8&ln=1",
+            help="Paste the job posting URL from LinkedIn, Bdjobs, etc."
         )
         submit_button = st.button("🚀 Generate Email")
 
@@ -58,8 +70,7 @@ def create_streamlit_app(llm, portfolio, clean_text):
                     links = portfolio.query_links(skills)
                     email = llm.write_mail(job, links)
 
-                    with st.expander(f"✉️ Cold Email #{idx}"):
-                        st.markdown(f"#### 📌 Target Role: {job.get('title', 'Unknown Title')}")
+                    with st.expander(f"✉️ Here is the Email", expanded=True):
                         st.code(email, language='markdown')
                         st.download_button(
                             label="📥 Download Email",
